@@ -14,14 +14,7 @@ public class SHA2HashingExample
         md.update(password.getBytes());
         
         byte mdByteData[] = md.digest();
- 
-        //Convert the byte to hex format method 
-        StringBuffer hexString = new StringBuffer();
-    	for (int i=0;i<mdByteData.length;i++) {
-    		String hex=Integer.toHexString(0xff & mdByteData[i]);
-   	     	if(hex.length()==1) hexString.append('0');
-   	     	hexString.append(hex);
-    	}
-    	System.out.println("Hex format output: " + hexString.toString());
+        
+    	System.out.println("Hex format output: " + Converter.toHexString(mdByteData));
     }
 }
