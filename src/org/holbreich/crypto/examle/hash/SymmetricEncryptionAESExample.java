@@ -59,7 +59,7 @@ public class SymmetricEncryptionAESExample {
 			try {
 				byte[] encryptText = originalText.getBytes();
 				SecretKey skeySpec = new SecretKeySpec(secretKey, "AES");
-				Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
+				Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5Padding"); //AES/CTR/NoPadding for CTR.
 				IvParameterSpec ivspec = new IvParameterSpec(iv);
 				cipher.init(Cipher.ENCRYPT_MODE, skeySpec, ivspec);
 				encrypted = cipher.doFinal(encryptText);
@@ -90,6 +90,9 @@ public class SymmetricEncryptionAESExample {
 		return plainText;
 	}
 	
+	
+ 
+	
 	/**
 	 * Generate random text/string of 200 characters
 	 * 
@@ -112,10 +115,10 @@ public class SymmetricEncryptionAESExample {
 	 * @return String
 	 */
 	public byte[] getSecretKey() {
-		KeyGenerator keyGen;
-		byte[]  strSecretkey = null;
+		
+		byte[] strSecretkey = null;
 		try {
-			keyGen = KeyGenerator.getInstance("AES");
+			KeyGenerator keyGen = KeyGenerator.getInstance("AES");
 			keyGen.init(128);
 			SecretKey secretkey = keyGen.generateKey();
 			return secretkey.getEncoded();
@@ -126,9 +129,9 @@ public class SymmetricEncryptionAESExample {
 	}
 	
 	public byte[] getIV(){
-	    // build the initialization vector (randomly).
-        SecureRandom random = new SecureRandom();
-        byte iv[] = new byte[16];//generate random 16 byte IV AES is always 16bytes
+	    
+        SecureRandom random = new SecureRandom(); // build the initialization vector (randomly).
+        byte iv[] = new byte[16];//generate random 16 byte IV. AES IS is 16 bytes = 128 bits here 
         random.nextBytes(iv);
         return  iv;
 	}

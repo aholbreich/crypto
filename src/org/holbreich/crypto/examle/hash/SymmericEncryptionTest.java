@@ -3,8 +3,6 @@ package org.holbreich.crypto.examle.hash;
 import java.time.Duration;
 import java.time.Instant;
 
-import javax.crypto.spec.IvParameterSpec;
-
 public class SymmericEncryptionTest {
 
 	public static void main(String[] args) {
