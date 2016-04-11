@@ -6,12 +6,12 @@ public class SHA2HashingExample
 {
     public static void main(String[] args)throws Exception
     {
-    	String password = "MyWeakPassword";
+    	String testText = "MyTestText";
     	
     	//Possible SHA-256, SHA-384, and SHA-512
     	//See http://docs.oracle.com/javase/1.5.0/docs/guide/security/CryptoSpec.html#AppA
         MessageDigest md = MessageDigest.getInstance("SHA-256");
-        md.update(password.getBytes());
+        md.update(testText.getBytes());
         
         byte mdByteData[] = md.digest();
         
