@@ -5,7 +5,7 @@ import java.security.SecureRandom;
 
 public class SaltFactory {
 
-	private SecureRandom secureRandom;
+	private final SecureRandom secureRandom;
 
 	public SaltFactory() throws NoSuchAlgorithmException {
 		secureRandom = SecureRandom.getInstance("SHA1PRNG");

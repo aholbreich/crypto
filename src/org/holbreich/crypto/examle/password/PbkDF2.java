@@ -8,13 +8,13 @@ import javax.crypto.spec.PBEKeySpec;
 
 public class PbkDF2 {
 	
-	private SecretKeyFactory keyFactory;
+	private final SecretKeyFactory keyFactory;
 
 	public PbkDF2() throws NoSuchAlgorithmException {
 		keyFactory = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA512");
 	}
-	
-	public byte[] generateSecret(PBEKeySpec keySpec) throws InvalidKeySpecException {
+
+	public byte[] generateSecret(final PBEKeySpec keySpec) throws InvalidKeySpecException {
 		return keyFactory.generateSecret(keySpec).getEncoded();
 	}
 	

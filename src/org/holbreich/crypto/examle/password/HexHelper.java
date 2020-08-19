@@ -5,7 +5,7 @@ import java.security.NoSuchAlgorithmException;
 
 public class HexHelper {
 
-	public static String toHex(byte[] array)  {
+	public static String toHex(final byte[] array) {
 		BigInteger bi = new BigInteger(1, array);
 		String hex = bi.toString(16);
 		int paddingLength = (array.length * 2) - hex.length();
@@ -15,10 +15,9 @@ public class HexHelper {
 			return hex;
 		}
 	}
-	
-	public static byte[] fromHex(String hex) throws NoSuchAlgorithmException
-    {
-        byte[] bytes = new byte[hex.length() / 2];
+
+	public static byte[] fromHex(final String hex) throws NoSuchAlgorithmException {
+		final byte[] bytes = new byte[hex.length() / 2];
         for(int i = 0; i<bytes.length ;i++)
         {
             bytes[i] = (byte)Integer.parseInt(hex.substring(2 * i, 2 * i + 2), 16);

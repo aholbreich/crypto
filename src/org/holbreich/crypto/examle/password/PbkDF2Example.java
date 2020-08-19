@@ -10,7 +10,7 @@ import javax.crypto.spec.PBEKeySpec;
 
 public class PbkDF2Example {
 
-	private static final int HASH_BYTE_SIZE = 64*8; 
+	private static final int HASH_BIT_SIZE = 64*8; 
 	
 	private final int iterations;
 	private final SaltFactory saltFactory; 
@@ -36,14 +36,14 @@ public class PbkDF2Example {
 		long validationStart = System.currentTimeMillis();
 		boolean isValid = example.validatePassword(plainTextPassword, securedPasswordHash);
 		long validationEnd = System.currentTimeMillis();
-		System.out.print("Took:"+(validationEnd-validationStart)+"ms., valid:"+isValid);
+		System.out.print("Decrypted: Took:"+(validationEnd-validationStart)+"ms., valid:"+isValid);
 		
 	}
 
 
 	private String encrypt(String plainTextPassword) throws InvalidKeySpecException {
 		byte[] salt = saltFactory.getNewSalt();
-		PBEKeySpec spec = new PBEKeySpec(plainTextPassword.toCharArray(), salt, iterations, HASH_BYTE_SIZE);
+		PBEKeySpec spec = new PBEKeySpec(plainTextPassword.toCharArray(), salt, iterations, HASH_BIT_SIZE);
 
 		byte[] resultHash = keyFactory.generateSecret(spec);
 		return  iterations + ":" + toHex(salt) + ":" + toHex(resultHash);
